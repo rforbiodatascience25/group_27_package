@@ -13,3 +13,6 @@ Description: Provides simple and flexible tools for analyzing and visualizing bi
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Depends: 
+    R (>= 3.5)
+RoxygenNote: 7.3.2
