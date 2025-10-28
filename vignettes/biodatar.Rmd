@@ -1,0 +1,116 @@
+---
+title: "biodatar - Group 27"
+author: |
+  Mazarine Chambon (s251918), Emily Moeller (s251702), Erine Genilloud (s252025)\
+  Hedi Khemakhem (s251900), Yann Ducrest (s251889)
+output: rmarkdown::pdf_document
+vignette: >
+  %\VignetteIndexEntry{biodatar}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(biodatar)
+```
+
+**GitHub repository:** [https://github.com/rforbiodatascience25/group_27_package](https://github.com/rforbiodatascience25/group_27_package)
+
+## Introduction
+`biodatar` is an educational R package that illustrates the **central dogma of molecular biology**, showing how genetic information flows from **DNA → RNA → Protein**.
+
+It contains five functions and one dataset (`codon_table`) that allow users to generate random DNA sequences, transcribe them into RNA, translate them into proteins, and visualize amino acid frequencies.  
+
+This package was developed as part of the *R for Bio Data Science* course at DTU.
+
+## Functions Overview
+
+### 1. `generate_dna()`
+Generates a random DNA sequence of a specified length.
+
+```r
+dna <- generate_dna(15)
+dna
+#> "ATGGCTTATCGTGAC"
+````
+
+### 2. `dna_to_rna()`
+
+Transcribes DNA into RNA by replacing thymine (T) with uracil (U).
+
+```r
+rna <- dna_to_rna(dna)
+rna
+#> "AUGGCUUAUCGUGAC"
+```
+
+### 3. `split_into_codons()`
+
+Splits an RNA sequence into codons (groups of 3 nucleotides).
+
+```r
+codons <- split_into_codons(rna)
+codons
+#> "AUG" "GCU" "UAU" "CGU" "GAC"
+```
+
+### 4. `translate_codons()`
+
+Translates RNA codons into amino acids using the internal `codon_table`.
+
+```r
+protein <- translate_codons(codons)
+protein
+#> "MAYRD"
+```
+
+### 5. `plot_protein()`
+
+Plots the frequency of amino acids in a protein sequence using **ggplot2** and **stringr**.
+
+```r
+plot_protein(protein)
+```
+
+This creates a bar plot showing the number of occurrences of each amino acid.
+
+## Workflow Example
+
+The following pipeline demonstrates how the functions can be combined to model the **central dogma**:
+
+```r
+dna <- generate_dna(30)
+rna <- dna_to_rna(dna)
+codons <- split_into_codons(rna)
+protein <- translate_codons(codons)
+plot_protein(protein)
+```
+
+Result: A complete simulation of transcription and translation, ending with a visualization of the resulting protein composition.
+
+## Use Cases
+
+* Teaching the molecular biology concepts of transcription and translation.
+* Demonstrating how to build an R package.
+* Simulating random DNA, RNA, or protein sequences for educational purposes.
+* Providing a foundation for developing more advanced bioinformatics tools.
+
+## Group Discussion Summary (Task 3)
+
+* Each function models a specific step in the **central dogma**.
+* Dependencies (`ggplot2`, `stringr`) were added with `usethis::use_package()`.
+* It’s good practice to **limit dependencies** to keep packages lightweight and stable.
+* The team discussed that sometimes dependencies are **necessary** for efficiency and readability (e.g., `ggplot2` for visualization).
+* `package::function()` is preferred over `@importFrom` because it makes code origins explicit and avoids namespace conflicts.
+
+## References
+
+* NCBI Codon Table: [https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?chapter=tgencodes#SG1](https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?chapter=tgencodes#SG1)
+* Wickham et al., *R Packages (2e)*, O’Reilly, 2023.
