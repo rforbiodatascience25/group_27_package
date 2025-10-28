@@ -1,0 +1,15 @@
+Package: biodatar
+Type: Package
+Title: Tools for Biological Data Analysis
+Version: 0.1.0
+Authors@R: c(
+    person("Mazarine", "Chambon", email = "s251918@dtu.dk", role = "aut"),
+    person("Emily", "Möller", email = "s251702@dtu.dk", role = "aut"),
+    person("Erine", "Genilloud", email = "s252025@dtu.dk", role = "aut"),
+    person("Hedi", "Khemakhem", email = "s251900@dtu.dk", role = "aut"),
+    person("Yann", "Ducrest", email = "s251889@dtu.dk", role = c("aut", "cre")))
+Description: Provides simple and flexible tools for analyzing and visualizing biological datasets.
+    Includes functions for data preprocessing, statistical analysis, and visualization.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
